@@ -3,6 +3,7 @@ define([
 	"dojo/_base/declare",
 	"dojo/_base/lang",
 	"dojo/_base/window",
+	"dojo/Deferred",
 	"dojo/dom-class",
 	"dojo/on",
 	"dojo/touch",
@@ -14,7 +15,7 @@ define([
 	"./iconUtils",
 	"dojo/sniff",
 	"dojo/has!dojo-bidi?dui/mobile/bidi/_ItemBase"
-], function(array, declare, lang, win, domClass, on, touch, registry, Contained, Container, WidgetBase, TransitionEvent, iconUtils, has, BidiItemBase){
+], function(array, declare, lang, win, Deferred, domClass, on, touch, registry, Contained, Container, WidgetBase, TransitionEvent, iconUtils, has, BidiItemBase){
 
 	// module:
 	//		dui/mobile/_ItemBase
@@ -298,7 +299,10 @@ define([
 			if(this._prepareForTransition(e, doTransition ? opts : null) === false){ return; }
 			if(doTransition){
 				this.setTransitionPos(e);
-				new TransitionEvent(this.domNode, opts, e).dispatch();
+				on.emit("dui-transition", {
+				 	type: opts.transition, direction: opts.direction, dest: opts.moveTo,
+					transitionDeferred: new Deferred(), cancelable: true, bubble: true
+				});
 			}
 		},
 
