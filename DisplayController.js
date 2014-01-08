@@ -9,7 +9,7 @@ define([], function () {
 			}
 			return getDisplayContainer(parentNode);
 		}
-	};
+	}
 
 	function displayHandler(event) {
 		if (event.target === document) {
@@ -18,7 +18,7 @@ define([], function () {
 			var destContainer = getDisplayContainer(destElement);
 			destContainer.emit("delite-display", event);
 		}
-	};
+	}
 
 	function loadHandler(event) {
 		// TODO implement simple view loading like in dojox/mobile or let dapp always handle complex cases or
@@ -26,7 +26,7 @@ define([], function () {
 		event.loadDeferred.resolve({
 			child: typeof event.dest === "string" ? document.getElementById(event.dest) : event.dest
 		});
-	};
+	}
 
 	document.addEventListener("delite-display-load", loadHandler);
 	document.addEventListener("delite-display", displayHandler, true);
