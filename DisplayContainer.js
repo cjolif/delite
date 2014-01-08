@@ -40,7 +40,8 @@ define(["dcl/dcl", "dojo/_base/lang", "dojo/Deferred", "dojo/when", "delite/Cont
 			//		This method must perform the display and possible transition effect. It is meant to be
 			//		specialized by subclasses.
 			// returns:
-			//		A promise that will be resolved when the display & transition effect will have been performed.
+			//		A boolean or promise that will be resolved when the display & transition effect will have been
+			// 		performed.
 			// tags:
 			//		protected
 			widget.style.visibility = "visible";
