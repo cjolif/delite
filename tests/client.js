@@ -1,17 +1,15 @@
 // Test file to run infrastructure tests from a browser
 // Run using http://localhost/delite/node_modules/intern/client.html?config=tests/client
+define(["./intern"], function (intern) {
+	var config = {
+		loader: {
+			baseUrl: "../../.."
+		}
+	};
 
-define({
-	loader: {
-		// location of all the packages, relative to client.html
-		baseUrl: "../../.."
-	},
+	for (var key in intern) {
+		config[key] = intern[key];
+	}
 
-	useLoader: {
-		"host-node": "requirejs",
-		"host-browser": "../../../requirejs/require.js"
-	},
-
-	// Non-functional test suites
-	suites: [ "delite/tests/unit/all" ]
+	return config;
 });
